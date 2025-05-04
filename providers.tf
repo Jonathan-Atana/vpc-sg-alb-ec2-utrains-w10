@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket  = "terraform-state-bucket-ja"
+    bucket  = "replace this with your bucket name"
     key     = "dev/utrains-w10-alb-terraform/terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
