@@ -1,18 +1,19 @@
 terraform {
   backend "s3" {
-    bucket  = "replace this with your bucket name"
-    key     = "dev/utrains-w10-alb-terraform/terraform.tfstate"
-    region  = "us-east-1"
+    bucket  = var.bucket
+    key     = "dev/w10/terraform.tfstate"
+    region  = var.region
     encrypt = true
   }
 
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
+      version = "5.98.0"
     }
   }
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = var.region
 }

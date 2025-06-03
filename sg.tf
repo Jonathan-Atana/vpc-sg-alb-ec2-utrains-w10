@@ -5,8 +5,8 @@ resource "aws_security_group" "sg1" {
 
   ingress {
     description     = "allow http"
-    from_port       = 80
-    to_port         = 80
+    from_port       = var.http_port
+    to_port         = var.http_port
     protocol        = "tcp"
     security_groups = [aws_security_group.sg2.id]
   }
@@ -19,7 +19,7 @@ resource "aws_security_group" "sg1" {
   }
 
   tags = {
-    env                  = "Dev"
+    env                  = var.env
     created-by-terraform = "yes"
   }
 }
@@ -31,16 +31,16 @@ resource "aws_security_group" "sg2" {
 
   ingress {
     description = "allow http"
-    from_port   = 80
-    to_port     = 80
+    from_port   = var.http_port
+    to_port     = var.http_port
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
     description = "allow http"
-    from_port   = 443
-    to_port     = 443
+    from_port   = var.https_port
+    to_port     = var.https_port
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -53,7 +53,7 @@ resource "aws_security_group" "sg2" {
   }
 
   tags = {
-    env                  = "Dev"
+    env                  = var.env
     created-by-terraform = "yes"
   }
 }
